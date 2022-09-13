@@ -5,7 +5,8 @@
   "main": "./src/index.ts",
   "scripts": {
     "dev": "tsx watch .",
-    "tunnel": "cloudflared tunnel run"
+    "tunnel": "cloudflared tunnel run",
+    "docker:build": "docker buildx build --platform=linux/amd64 -t registry.ctpnas.iamprompt.me/line-webhook-dev:latest --push ."
   },
   "keywords": [],
   "author": "",

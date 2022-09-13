@@ -24,37 +24,10 @@ app.post('/webhook', (req, res) => {
       continue
     }
 
-    if (event.type === 'message' && event.message.type === 'text') {
-      client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: event.message.text,
-      })
-    } else if (event.type === 'postback') {
-      client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: event.postback.data,
-      })
-    } else if (event.type === 'follow') {
-      client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: 'follow',
-      })
-    } else if (event.type === 'join') {
-      client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: 'join',
-      })
-    } else if (event.type === 'memberJoined') {
-      client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: 'memberJoined',
-      })
-    } else if (event.type === 'beacon') {
-      client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: `[Beacon] ${event.beacon.type} ${event.beacon.hwid}`,
-      })
-    }
+    client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: JSON.stringify(event, null, 2),
+    })
   }
 
   res.send({ message: 'OK!' })
